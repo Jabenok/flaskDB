@@ -148,7 +148,7 @@ def add_student():
 
     if request.method == "POST":
         full_name = request.form['full_name']
-        course = request.form['course']
+        course = request.form['course'] #ss
         phone = request.form['phone']
         discipline_id = request.form['discipline_id']
 
