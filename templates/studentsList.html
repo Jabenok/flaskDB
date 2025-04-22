@@ -10,7 +10,9 @@
         <th>Курс</th>
         <th>Телефон</th>
         <th>Дисциплина</th>
-        <th>Действия</th>
+        {% if session["role"] == "teacher" %}
+        <th>Действия</th> <!-- Этот столбец только для преподавателей -->
+        {% endif %}
     </tr>
     {% for student in students %}
     <tr>
@@ -19,10 +21,13 @@
         <td>{{ student.course }}</td>
         <td>{{ student.phone }}</td>
         <td>{{ student.discipline_name }}</td>
+        {% if session["role"] == "teacher" %}
+        <!-- Только для преподавателя -->
         <td>
             <a href="/deleteStudent/{{ student.id }}">Удалить</a>
             <a href="{{ url_for('edit_student', student_id=student.id) }}" class="btn btn-primary" style="margin-right: 10px;">Редактировать</a>
         </td>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>
