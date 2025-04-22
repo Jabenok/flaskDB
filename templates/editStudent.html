@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Редактировать студента</h1>
+
+<form method="post">
+    <p>Имя: <input type="text" name="full_name" value="{{ student.full_name }}" required></p>
+    <p>Курс: <input type="number" name="course" value="{{ student.course }}" required></p>
+    <p>Телефон: <input type="text" name="phone" value="{{ student.phone }}" required></p>
+    <p>Дисциплина:
+        <select name="discipline_id" required>
+            {% for discipline in disciplines %}
+                <option value="{{ discipline.id }}" {% if discipline.id == student.discipline_id %}selected{% endif %}>
+                    {{ discipline.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+    <p><input type="submit" value="Сохранить изменения"></p>
+</form>
+
+<p><a href="{{ url_for('studentsList') }}">Назад к списку студентов</a></p>
+{% endblock %}
